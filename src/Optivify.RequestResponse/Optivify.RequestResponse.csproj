@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Authors>Optivify</Authors>
+    <Company>Optivify</Company>
+    <Description>A request dispatcher with MediatR.</Description>
+    <PackageProjectUrl>https://github.com/Optivify/RequestResponse</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Optivify/RequestResponse</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>request response dispatcher mediatr requesthandler</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Optivify.ServiceResult" Version="1.0.3" />
+  </ItemGroup>
+
+</Project>
