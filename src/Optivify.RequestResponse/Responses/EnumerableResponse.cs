@@ -1,7 +1,7 @@
 ﻿namespace Optivify.RequestResponse
 {
-    public class EnumerableResponse<TItem>
+    public class EnumerableResponse<T>
     {
-        public IEnumerable<TItem> Items { get; set; } = Enumerable.Empty<TItem>();
+        public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
     }
 }

@@ -31,14 +31,14 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 
             if (input == null)
             {
-                return Result.Invalid("Invalid input.");
+                return Result.Invalid(new ValidationError { ErrorMessage = "Invalid input." });
             }
 
-            var city = Cities.FirstOrDefault(x => x == input.City);
+            var city = Cities.FirstOrDefault(x => string.Equals(x, input.City, StringComparison.OrdinalIgnoreCase));
 
             if (city == null)
             {
-                return Result.Invalid("City not found.");
+                return Result.NotFound("City not found.");
             }
 
             var response = new GetWeatherForecastResponse
@@ -46,7 +46,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
                 Item = this.GetWeatherForecast(city, DateTime.UtcNow)
             };
 
-            return Result.Success(response);
+            return response;
         }
 
         public async Task<Result<ListWeatherForecastResponse>> Handle(ListWeatherForecastRequest request, CancellationToken cancellationToken)
@@ -55,7 +55,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 
             if (input == null)
             {
-                return Result.Invalid("Invalid input.");
+                return Result.Invalid(new ValidationError { ErrorMessage = "Invalid input." });
             }
 
             var now = DateTime.UtcNow;

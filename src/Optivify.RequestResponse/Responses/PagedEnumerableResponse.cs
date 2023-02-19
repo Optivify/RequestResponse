@@ -1,6 +1,6 @@
 ﻿namespace Optivify.RequestResponse
 {
-    public class PagedListResponse<T> : ListResponse<T>
+    public class PagedEnumerableResponse<T> : EnumerableResponse<T>
     {
         public PaginationData? Pagination { get; set; }
     }

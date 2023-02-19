@@ -12,12 +12,12 @@
         {
             get
             {
-                if (this.ItemsPerPage <= 0)
+                if (ItemsPerPage <= 0)
                 {
                     return 1;
                 }
 
-                return (int)Math.Ceiling((double)this.TotalCount / this.ItemsPerPage);
+                return (int)Math.Ceiling((double)TotalCount / ItemsPerPage);
             }
         }
 

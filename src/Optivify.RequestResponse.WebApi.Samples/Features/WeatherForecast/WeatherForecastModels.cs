@@ -27,7 +27,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
     {
     }
 
-    public class ListWeatherForecastResponse : PagedListResponse<WeatherForecast?>
+    public class ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>
     {
     }
 
