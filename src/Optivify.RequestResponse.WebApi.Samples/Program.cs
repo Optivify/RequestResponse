@@ -1,12 +1,10 @@
-using MediatR;
 using Optivify.RequestResponse;
-using Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 // Add MediatR
-services.AddMediatR(typeof(WeatherForecastController).Assembly);
+services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 // Add request dispatcher.
 services.AddRequestDispatcher();

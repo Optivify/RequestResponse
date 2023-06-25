@@ -5,11 +5,11 @@ namespace Optivify.RequestResponse
 {
     public class ListInput
     {
-        public virtual string? Query { get; set; }
+        public virtual string? SearchText { get; set; }
 
         public virtual int Page { get; set; }
 
-        public virtual int PageSize { get; set; }
+        public virtual int ItemsPerPage { get; set; }
 
         public virtual string? SortBy { get; set; }
 
@@ -21,14 +21,14 @@ namespace Optivify.RequestResponse
         [JsonIgnore]
         public virtual int Skip
         {
-            get { return this.PageSize * (this.Page - 1); }
+            get { return this.ItemsPerPage * (this.Page - 1); }
         }
 
         [NotMapped]
         [JsonIgnore]
         public virtual int Take
         {
-            get { return this.PageSize; }
+            get { return this.ItemsPerPage; }
         }
 
         public ListInput()
@@ -39,7 +39,7 @@ namespace Optivify.RequestResponse
         protected void SetDefault()
         {
             this.Page = 1;
-            this.PageSize = 10;
+            this.ItemsPerPage = 10;
             this.PaginationEnabled = true;
         }
     }

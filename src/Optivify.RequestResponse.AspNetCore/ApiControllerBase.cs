@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.AspNetCore
+namespace Optivify.RequestResponse
 {
     public abstract class ApiControllerBase : ControllerBase
     {
@@ -14,8 +14,8 @@ namespace Optivify.RequestResponse.AspNetCore
             {
                 if (this.requestDispatcher is null)
                 {
-                    this.requestDispatcher = base.HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
-                    base.HttpContext.Response.RegisterForDispose(this.requestDispatcher);
+                    this.requestDispatcher = HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
+                    HttpContext.Response.RegisterForDispose(this.requestDispatcher);
                 }
 
                 return this.requestDispatcher;

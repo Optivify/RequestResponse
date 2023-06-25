@@ -6,9 +6,15 @@ namespace Optivify.RequestResponse
     {
     }
 
-    public abstract class Request<TData> : Request, IRequest
+
+    public interface IRequestData<TData>
     {
-        public TData Data { get; set; }
+        TData? Data { get; set; }
+    }
+
+    public abstract class Request<TData> : Request, IRequest, IRequestData<TData>
+    {
+        public TData ?Data { get; set; }
 
         protected Request(TData data)
         {

@@ -31,7 +31,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 
             if (input == null)
             {
-                return Result.Invalid(new ValidationError { ErrorMessage = "Invalid input." });
+                return Result.Invalid("Invalid input.");
             }
 
             var city = Cities.FirstOrDefault(x => string.Equals(x, input.City, StringComparison.OrdinalIgnoreCase));
@@ -65,7 +65,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
                 Pagination = new PaginationData
                 {
                     Page = input.Page,
-                    ItemsPerPage = input.PageSize,
+                    ItemsPerPage = input.ItemsPerPage,
                     TotalCount = Cities.Count()
                 }
             };

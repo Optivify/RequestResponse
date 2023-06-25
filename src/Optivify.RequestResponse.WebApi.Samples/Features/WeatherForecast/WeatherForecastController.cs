@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Optivify.RequestResponse.AspNetCore;
 using Optivify.ServiceResult.AspNetCore;
 
 namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
