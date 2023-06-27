@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Optivify.RequestResponse
+namespace Optivify.RequestResponse.Requests
 {
     public abstract class Request : IRequest
     {
@@ -14,7 +14,7 @@ namespace Optivify.RequestResponse
 
     public abstract class Request<TData> : Request, IRequest, IRequestData<TData>
     {
-        public TData ?Data { get; set; }
+        public TData? Data { get; set; }
 
         protected Request(TData data)
         {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Optivify.RequestResponse.Requests;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse
