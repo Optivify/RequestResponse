@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Optivify.ServiceResult.AspNetCore;
+using Optivify.RequestResponse.AspNetCore;
 
 namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 {
@@ -8,7 +8,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
     public class WeatherForecastController : ApiControllerBase
     {
         [HttpGet("Get")]
-        public async Task<IActionResult> Get([FromQuery] GetWeatherForecastInput data)
+        public async Task<ActionResult<GetWeatherForecastResponse>> Get([FromQuery] GetWeatherForecastInput data)
         {
             var request = new GetWeatherForecastRequest { Data = data };
             var result = await this.DispatchAsync(request);
@@ -17,7 +17,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
         }
 
         [HttpGet("List")]
-        public async Task<IActionResult> List([FromQuery] ListWeatherForecastInput data)
+        public async Task<ActionResult<ListWeatherForecastResponse>> List([FromQuery] ListWeatherForecastInput data)
         {
             var request = new ListWeatherForecastRequest { Data = data };
             var result = await this.DispatchAsync(request);

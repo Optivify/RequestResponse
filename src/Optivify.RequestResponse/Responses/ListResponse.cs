@@ -1,7 +1,8 @@
-﻿namespace Optivify.RequestResponse
+﻿using Optivify.RequestResponse.Responses;
+
+namespace Optivify.RequestResponse
 {
-    public class ListResponse<T>
+    public class ListResponse<T> : DataResponse<List<T>>
     {
-        public IList<T> Items { get; set; } = new List<T>();
     }
 }

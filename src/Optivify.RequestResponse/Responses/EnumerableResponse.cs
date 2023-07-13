@@ -1,7 +1,7 @@
-﻿namespace Optivify.RequestResponse
+﻿using Optivify.RequestResponse.Responses;
+
+namespace Optivify.RequestResponse;
+
+public class EnumerableResponse<T> : DataResponse<IEnumerable<T>>
 {
-    public class EnumerableResponse<T>
-    {
-        public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
-    }
 }

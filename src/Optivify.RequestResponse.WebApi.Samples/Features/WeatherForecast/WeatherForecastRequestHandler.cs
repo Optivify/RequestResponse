@@ -25,14 +25,11 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
             };
         }
 
-        public async Task<Result<GetWeatherForecastResponse>> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
+        public async Task<Result<GetWeatherForecastResponse?>> Handle(GetWeatherForecastRequest request, CancellationToken cancellationToken)
         {
-            var input = request.Data;
+            ArgumentNullException.ThrowIfNull(request.Data);
 
-            if (input == null)
-            {
-                return Result.Invalid("Invalid input.");
-            }
+            var input = request.Data;
 
             var city = Cities.FirstOrDefault(x => string.Equals(x, input.City, StringComparison.OrdinalIgnoreCase));
 
@@ -43,13 +40,13 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 
             var response = new GetWeatherForecastResponse
             {
-                Item = this.GetWeatherForecast(city, DateTime.UtcNow)
+                Data = this.GetWeatherForecast(city, DateTime.UtcNow)
             };
 
             return response;
         }
 
-        public async Task<Result<ListWeatherForecastResponse>> Handle(ListWeatherForecastRequest request, CancellationToken cancellationToken)
+        public async Task<Result<ListWeatherForecastResponse?>> Handle(ListWeatherForecastRequest request, CancellationToken cancellationToken)
         {
             var input = request.Data;
 
@@ -61,7 +58,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
             var now = DateTime.UtcNow;
             var response = new ListWeatherForecastResponse
             {
-                Items = Cities.Skip(input.Skip).Take(input.Take).Select(x => this.GetWeatherForecast(x, now)),
+                Data = Cities.Skip(input.Skip).Take(input.Take).Select(x => this.GetWeatherForecast(x, now)),
                 Pagination = new PaginationData
                 {
                     Page = input.Page,
