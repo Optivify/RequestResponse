@@ -1,24 +1,23 @@
 ﻿using MediatR;
 
-namespace Optivify.RequestResponse.Requests
+namespace Optivify.RequestResponse.Requests;
+
+public abstract class Request : IRequest
 {
-    public abstract class Request : IRequest
+}
+
+
+public interface IRequestData<TData>
+{
+    TData? Data { get; set; }
+}
+
+public abstract class Request<TData> : Request, IRequest, IRequestData<TData>
+{
+    public TData? Data { get; set; }
+
+    protected Request(TData data)
     {
-    }
-
-
-    public interface IRequestData<TData>
-    {
-        TData? Data { get; set; }
-    }
-
-    public abstract class Request<TData> : Request, IRequest, IRequestData<TData>
-    {
-        public TData? Data { get; set; }
-
-        protected Request(TData data)
-        {
-            this.Data = data;
-        }
+        this.Data = data;
     }
 }

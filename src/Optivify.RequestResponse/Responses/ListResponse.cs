@@ -1,8 +1,7 @@
 ﻿using Optivify.RequestResponse.Responses;
 
-namespace Optivify.RequestResponse
+namespace Optivify.RequestResponse;
+
+public class ListResponse<T> : DataResponse<List<T>>
 {
-    public class ListResponse<T> : DataResponse<List<T>>
-    {
-    }
 }

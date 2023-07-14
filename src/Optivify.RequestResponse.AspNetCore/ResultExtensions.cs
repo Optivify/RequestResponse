@@ -2,7 +2,7 @@
 using Optivify.ServiceResult;
 using System.Text;
 
-namespace Optivify.RequestResponse.AspNetCore;
+namespace Optivify.RequestResponse;
 
 public static class ResultExtensions
 {

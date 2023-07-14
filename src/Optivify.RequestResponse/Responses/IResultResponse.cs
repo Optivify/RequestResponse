@@ -2,7 +2,7 @@
 
 namespace Optivify.RequestResponse.Responses;
 
-public interface IValidationResponse
+public interface IResultResponse
 {
     bool IsSuccess { get; set; }
 

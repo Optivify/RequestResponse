@@ -2,7 +2,7 @@
 using Optivify.RequestResponse.Responses;
 using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.AspNetCore;
+namespace Optivify.RequestResponse;
 
 public static class ControllerExtensions
 {
@@ -20,9 +20,18 @@ public static class ControllerExtensions
         };
     }
 
-    private static ResultResponse<T> CreateResultDataResponse<T>(Result<T> result)
+    private static ResultResponse CreateResultResponse<T>(Result<T> result)
     {
-        return new ResultResponse<T>
+        return new ResultResponse
+        {
+            IsSuccess = result.IsSuccess,
+            ValidationErrors = result.ValidationErrors
+        };
+    }
+
+    private static DataResultResponse<T> CreateDataResultResponse<T>(Result<T> result)
+    {
+        return new DataResultResponse<T>
         {
             Data = result.Value,
             IsSuccess = result.IsSuccess,
@@ -30,53 +39,60 @@ public static class ControllerExtensions
         };
     }
 
-    private static IValidationResponse? GetValidationResultResponse<T>(Result<T> result)
+    private static ActionResult Success<T>(ControllerBase controller, Result<T> result)
     {
-        if (result.Value is IValidationResponse response)
+        if (result.Value is IResultResponse response)
         {
             response.IsSuccess = result.IsSuccess;
             response.ValidationErrors = result.ValidationErrors;
 
-            return response;
+            if (result.Value is IDataResultResponse<T>)
+            {
+                return controller.Ok(CreateDataResultResponse(result));
+            }
+            else
+            {
+                controller.Ok(CreateResultResponse(result));
+            }
         }
 
-        return null;
-    }
-
-    private static ActionResult Success<T>(ControllerBase controller, Result<T> result)
-    {
-        var validationResultResponse = GetValidationResultResponse(result);
-
-        if (validationResultResponse is null)
-        {
-            return controller.Ok(result.Value);
-        }
-
-        return controller.Ok(validationResultResponse);
+        return controller.Ok(result.Value);
     }
 
     private static ActionResult Error<T>(ControllerBase controller, Result<T> result)
     {
-        var validationResultResponse = GetValidationResultResponse(result);
-
-        if (validationResultResponse is null)
+        if (result.Value is IResultResponse response)
         {
-            return controller.UnprocessableEntity(CreateResultDataResponse(result));
+            response.IsSuccess = result.IsSuccess;
+            response.ValidationErrors = result.ValidationErrors;
+
+            if (result.Value is IDataResultResponse<T>)
+            {
+                return controller.UnprocessableEntity(CreateDataResultResponse(result));
+            }
+            else
+            {
+                controller.UnprocessableEntity(CreateResultResponse(result));
+            }
         }
 
-        return controller.UnprocessableEntity(validationResultResponse);
+        return controller.UnprocessableEntity(result.Value);
     }
 
     private static ActionResult BadRequest<T>(ControllerBase controller, Result<T> result)
     {
-        var validationResultResponse = GetValidationResultResponse(result);
-
-        if (validationResultResponse is null)
+        if (result.Value is IResultResponse response)
         {
-            return controller.BadRequest(CreateResultDataResponse(result));
+            response.IsSuccess = result.IsSuccess;
+            response.ValidationErrors = result.ValidationErrors;
+
+            if (result.Value is IDataResultResponse<T>)
+            {
+                return controller.BadRequest(CreateDataResultResponse(result));
+            }
         }
 
-        return controller.BadRequest(validationResultResponse);
+        return controller.BadRequest(CreateResultResponse(result));
     }
 
     private static ActionResult NotFound<T>(ControllerBase controller, Result<T> result)
