@@ -1,12 +1,12 @@
 ﻿namespace Optivify.RequestResponse;
 
-public class PaginationData
+public record PaginationData
 {
-    public int Page { get; set; }
+    public int Page { get; init; }
 
-    public int ItemsPerPage { get; set; }
+    public int ItemsPerPage { get; init; }
 
-    public long TotalCount { get; set; }
+    public long TotalCount { get; init; }
 
     public int TotalPages
     {

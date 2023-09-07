@@ -1,6 +1,6 @@
-﻿namespace Optivify.RequestResponse.Responses;
+﻿namespace Optivify.RequestResponse;
 
-public class DataResponse<T> : IDataResponse<T>
+public record DataResponse<T> : IDataResponse<T>
 {
     public T? Data { get; set; }
 }

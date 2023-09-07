@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Optivify.RequestResponse.Responses;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
@@ -41,11 +40,8 @@ public static class ControllerExtensions
 
     private static ActionResult Success<T>(ControllerBase controller, Result<T> result)
     {
-        if (result.Value is IResultResponse response)
+        if (result.Value is IResultResponse)
         {
-            response.IsSuccess = result.IsSuccess;
-            response.ValidationErrors = result.ValidationErrors;
-
             if (result.Value is IDataResultResponse<T>)
             {
                 return controller.Ok(CreateDataResultResponse(result));

@@ -1,4 +1,4 @@
-﻿namespace Optivify.RequestResponse.Responses;
+﻿namespace Optivify.RequestResponse;
 
 public interface IDataResponse<T>
 {

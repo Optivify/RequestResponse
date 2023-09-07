@@ -1,6 +1,8 @@
-﻿namespace Optivify.RequestResponse;
+﻿using Optivify.RequestResponse.Responses;
 
-public class PagedListResponse<T> : ListResponse<T>
+namespace Optivify.RequestResponse;
+
+public record PagedListResponse<T> : ListResponse<T>
 {
     public PaginationData? Pagination { get; set; }
 }

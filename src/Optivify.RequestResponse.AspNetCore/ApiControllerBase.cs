@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Optivify.RequestResponse.Requests;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
@@ -15,8 +14,8 @@ public abstract class ApiControllerBase : ControllerBase
         {
             if (this.requestDispatcher is null)
             {
-                this.requestDispatcher = HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
-                HttpContext.Response.RegisterForDispose(this.requestDispatcher);
+                this.requestDispatcher = this.HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
+                this.HttpContext.Response.RegisterForDispose(this.requestDispatcher);
             }
 
             return this.requestDispatcher;
@@ -38,7 +37,7 @@ public abstract class ApiControllerBase : ControllerBase
         return this.RequestDispatcher.DispatchAsync(request);
     }
 
-    protected Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
+    protected Task<Result<TResponse?>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
     {
         return this.RequestDispatcher.DispatchAsync(request);
     }

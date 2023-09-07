@@ -1,7 +1,5 @@
-﻿using Optivify.RequestResponse.Responses;
+﻿using Optivify.RequestResponse;
 
 namespace Optivify.RequestResponse;
 
-public class EnumerableResponse<T> : DataResponse<IEnumerable<T>>
-{
-}
+public record EnumerableResponse<T> : DataResponse<IEnumerable<T>>;

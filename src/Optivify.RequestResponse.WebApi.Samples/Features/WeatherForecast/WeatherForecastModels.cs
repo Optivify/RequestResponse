@@ -1,40 +1,20 @@
-﻿using Optivify.RequestResponse.Requests;
-using Optivify.RequestResponse.Responses;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
+namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast;
+
+public record GetWeatherForecastInput
 {
-    #region Get Weather Forecast
-
-    public class GetWeatherForecastInput
-    {
-        [Required]
-        public string? City { get; set; }
-    }
-
-    public class GetWeatherForecastResponse : DataResponse<WeatherForecast?>
-    {
-    }
-
-    public class GetWeatherForecastRequest : ResultRequest<GetWeatherForecastInput, GetWeatherForecastResponse>
-    {
-    }
-
-    #endregion
-
-    #region List Weather Forecast
-
-    public class ListWeatherForecastInput : ListInput
-    {
-    }
-
-    public class ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>
-    {
-    }
-
-    public class ListWeatherForecastRequest : ResultRequest<ListWeatherForecastInput, ListWeatherForecastResponse>
-    {
-    }
-
-    #endregion
+    [Required]
+    public string? City { get; init; }
 }
+
+public record GetWeatherForecastResponse : DataResponse<WeatherForecast?>;
+
+public record GetWeatherForecastRequest : ResultRequest<GetWeatherForecastInput, GetWeatherForecastResponse>;
+
+
+public record ListWeatherForecastInput : ListInput;
+
+public record ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>;
+
+public record ListWeatherForecastRequest : ResultRequest<ListWeatherForecastInput, ListWeatherForecastResponse>;

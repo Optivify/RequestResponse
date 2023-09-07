@@ -1,8 +1,8 @@
 ﻿using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.Responses;
+namespace Optivify.RequestResponse;
 
-public class ResultResponse : IResultResponse
+public record ResultResponse : IResultResponse
 {
     public bool IsSuccess { get; set; }
 

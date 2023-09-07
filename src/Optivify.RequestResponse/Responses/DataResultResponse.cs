@@ -1,8 +1,8 @@
 ﻿using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.Responses;
+namespace Optivify.RequestResponse;
 
-public class DataResultResponse<T> : DataResponse<T?>, IResultResponse
+public record DataResultResponse<T> : DataResponse<T?>, IResultResponse
 {
     public bool IsSuccess { get; set; }
 

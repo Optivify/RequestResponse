@@ -1,38 +1,47 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Optivify.RequestResponse.Requests;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
 
-public interface IRequestDispatcher : IDisposable
-{
-    Task DispatchAsync(Request request);
-
-    Task DispatchAsync<TData>(Request<TData> request);
-
-    Task<Result> DispatchAsync<TData>(ResultRequest<TData> request);
-
-    Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request);
-}
-
-public class RequestDispatcher : IRequestDispatcher, IDisposable
+public class RequestDispatcher : IRequestDispatcher
 {
     private readonly IServiceScope serviceScope;
+
+    private bool disposed = false;
 
     public RequestDispatcher(IServiceScopeFactory serviceScopeFactory)
     {
         this.serviceScope = serviceScopeFactory.CreateScope();
     }
 
-    private IMediator GetMediator()
-    {
-        return (IMediator)serviceScope.ServiceProvider.GetRequiredService(typeof(IMediator));
-    }
-
     public void Dispose()
     {
-        this.serviceScope.Dispose();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    ~RequestDispatcher()
+    {
+        Dispose(false);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                this.serviceScope.Dispose();
+            }
+
+            disposed = true;
+        }
+    }
+
+    private IMediator GetMediator()
+    {
+        return (IMediator)this.serviceScope.ServiceProvider.GetRequiredService(typeof(IMediator));
     }
 
     public Task DispatchAsync(Request request)
@@ -50,7 +59,7 @@ public class RequestDispatcher : IRequestDispatcher, IDisposable
         return this.GetMediator().Send(request);
     }
 
-    public Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
+    public Task<Result<TResponse?>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
     {
         return this.GetMediator().Send(request);
     }
