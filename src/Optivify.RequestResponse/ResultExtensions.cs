@@ -10,7 +10,7 @@ public static class ResultExtensions
     {
         var stringBuilder = new StringBuilder();
 
-        foreach (string errorMessage in result.ErrorMessages)
+        foreach (var errorMessage in result.ErrorMessages)
         {
             stringBuilder.AppendLine(errorMessage);
 

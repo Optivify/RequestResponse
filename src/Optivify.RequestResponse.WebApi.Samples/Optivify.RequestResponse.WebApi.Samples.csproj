@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Optivify.RequestResponse.AspNetCore\Optivify.RequestResponse.AspNetCore.csproj" />
+    <ProjectReference Include="..\Optivify.RequestResponse\Optivify.RequestResponse.csproj" />
   </ItemGroup>
 
 </Project>
