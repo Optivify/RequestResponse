@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Optivify.RequestResponse.Requests;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
@@ -33,12 +32,7 @@ public abstract class ApiControllerBase : ControllerBase
         return this.RequestDispatcher.DispatchAsync(request);
     }
 
-    protected Task<Result> DispatchAsync<TData>(ResultRequest<TData> request)
-    {
-        return this.RequestDispatcher.DispatchAsync(request);
-    }
-
-    protected Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
+    protected Task<Result<TResponse>> DispatchAsync<TData, TResponse>(Request<TData, TResponse> request)
     {
         return this.RequestDispatcher.DispatchAsync(request);
     }

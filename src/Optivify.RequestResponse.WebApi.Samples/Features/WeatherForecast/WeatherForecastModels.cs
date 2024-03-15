@@ -1,6 +1,4 @@
-﻿using Optivify.RequestResponse.Requests;
-using Optivify.RequestResponse.Responses;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 {
@@ -16,7 +14,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
     {
     }
 
-    public class GetWeatherForecastRequest : ResultRequest<GetWeatherForecastInput, GetWeatherForecastResponse>
+    public class GetWeatherForecastRequest : Request<GetWeatherForecastInput, GetWeatherForecastResponse>
     {
     }
 
@@ -32,7 +30,7 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
     {
     }
 
-    public class ListWeatherForecastRequest : ResultRequest<ListWeatherForecastInput, ListWeatherForecastResponse>
+    public class ListWeatherForecastRequest : Request<ListWeatherForecastInput, ListWeatherForecastResponse>
     {
     }
 

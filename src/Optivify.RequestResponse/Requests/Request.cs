@@ -1,18 +1,18 @@
 ﻿using MediatR;
+using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.Requests;
+namespace Optivify.RequestResponse;
 
 public abstract class Request : IRequest
 {
 }
 
-
-public interface IRequestData<TData>
+public interface IDataRequest<TData>
 {
     TData? Data { get; set; }
 }
 
-public abstract class Request<TData> : Request, IRequestData<TData>
+public abstract class Request<TData> : Request, IDataRequest<TData>
 {
     public TData? Data { get; set; }
 
@@ -20,4 +20,9 @@ public abstract class Request<TData> : Request, IRequestData<TData>
     {
         this.Data = data;
     }
+}
+
+public abstract class Request<TData, TResponse> : IRequest<Result<TResponse?>>, IDataRequest<TData>
+{
+    public TData? Data { get; set; }
 }

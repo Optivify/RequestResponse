@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Optivify.RequestResponse.Requests;
+namespace Optivify.RequestResponse;
 
 public interface IListInput
 {

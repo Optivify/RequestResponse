@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Optivify.RequestResponse.Requests;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
@@ -11,9 +10,7 @@ public interface IRequestDispatcher : IDisposable
 
     Task DispatchAsync<TData>(Request<TData> request);
 
-    Task<Result> DispatchAsync<TData>(ResultRequest<TData> request);
-
-    Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request);
+    Task<Result<TResponse>> DispatchAsync<TData, TResponse>(Request<TData, TResponse> request);
 }
 
 public class RequestDispatcher : IRequestDispatcher
@@ -45,12 +42,7 @@ public class RequestDispatcher : IRequestDispatcher
         return this.GetMediator().Send(request);
     }
 
-    public Task<Result> DispatchAsync<TData>(ResultRequest<TData> request)
-    {
-        return this.GetMediator().Send(request);
-    }
-
-    public Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request)
+    public Task<Result<TResponse>> DispatchAsync<TData, TResponse>(Request<TData, TResponse> request)
     {
         return this.GetMediator().Send(request);
     }
