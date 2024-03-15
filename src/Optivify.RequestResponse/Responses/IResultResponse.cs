@@ -1,6 +1,6 @@
 ﻿using Optivify.ServiceResult;
 
-namespace Optivify.RequestResponse.Responses;
+namespace Optivify.RequestResponse;
 
 public interface IResultResponse
 {

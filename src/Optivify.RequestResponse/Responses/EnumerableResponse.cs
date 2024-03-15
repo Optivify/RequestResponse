@@ -1,7 +1,5 @@
-﻿using Optivify.RequestResponse.Responses;
+﻿namespace Optivify.RequestResponse;
 
-namespace Optivify.RequestResponse;
-
-public class EnumerableResponse<T> : DataResponse<IEnumerable<T>>
+public class EnumerableResponse<TData> : DataResponse<IEnumerable<TData>>
 {
 }

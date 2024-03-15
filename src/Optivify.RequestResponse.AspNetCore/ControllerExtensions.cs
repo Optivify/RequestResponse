@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Optivify.RequestResponse.Responses;
 using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
@@ -29,9 +28,9 @@ public static class ControllerExtensions
         };
     }
 
-    private static DataResultResponse<T> CreateDataResultResponse<T>(Result<T> result)
+    private static Response<T> CreateDataResultResponse<T>(Result<T> result)
     {
-        return new DataResultResponse<T>
+        return new Response<T>
         {
             Data = result.Value,
             IsSuccess = result.IsSuccess,
@@ -46,7 +45,7 @@ public static class ControllerExtensions
             response.IsSuccess = result.IsSuccess;
             response.ValidationErrors = result.ValidationErrors;
 
-            if (result.Value is IDataResultResponse<T>)
+            if (result.Value is IResponse<T>)
             {
                 return controller.Ok(CreateDataResultResponse(result));
             }
@@ -66,7 +65,7 @@ public static class ControllerExtensions
             response.IsSuccess = result.IsSuccess;
             response.ValidationErrors = result.ValidationErrors;
 
-            if (result.Value is IDataResultResponse<T>)
+            if (result.Value is IResponse<T>)
             {
                 return controller.UnprocessableEntity(CreateDataResultResponse(result));
             }
@@ -86,7 +85,7 @@ public static class ControllerExtensions
             response.IsSuccess = result.IsSuccess;
             response.ValidationErrors = result.ValidationErrors;
 
-            if (result.Value is IDataResultResponse<T>)
+            if (result.Value is IResponse<T>)
             {
                 return controller.BadRequest(CreateDataResultResponse(result));
             }

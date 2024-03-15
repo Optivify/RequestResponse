@@ -1,6 +1,6 @@
-﻿namespace Optivify.RequestResponse.Responses;
+﻿namespace Optivify.RequestResponse;
 
-public interface IDataResponse<T>
+public interface IDataResponse<TData>
 {
-    T? Data { get; set; }
+    TData? Data { get; set; }
 }
