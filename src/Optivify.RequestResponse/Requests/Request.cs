@@ -3,18 +3,18 @@ using Optivify.ServiceResult;
 
 namespace Optivify.RequestResponse;
 
-public abstract class Request : IRequest
+public abstract record Request : IRequest
 {
 }
 
 public interface IDataRequest<TData>
 {
-    TData? Data { get; set; }
+    TData? Data { get; init; }
 }
 
-public abstract class Request<TData> : Request, IDataRequest<TData>
+public abstract record Request<TData> : Request, IDataRequest<TData>
 {
-    public TData? Data { get; set; }
+    public TData? Data { get; init; }
 
     protected Request(TData data)
     {
@@ -22,7 +22,7 @@ public abstract class Request<TData> : Request, IDataRequest<TData>
     }
 }
 
-public abstract class Request<TData, TResponse> : IRequest<Result<TResponse?>>, IDataRequest<TData>
+public abstract record Request<TData, TResponse> : IRequest<Result<TResponse?>>, IDataRequest<TData>
 {
-    public TData? Data { get; set; }
+    public TData? Data { get; init; }
 }

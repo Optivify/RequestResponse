@@ -1,5 +1,5 @@
 ﻿namespace Optivify.RequestResponse;
 
-public class EnumerableResponse<TData> : DataResponse<IEnumerable<TData>>
+public record EnumerableResponse<TData> : DataResponse<IEnumerable<TData>>
 {
 }

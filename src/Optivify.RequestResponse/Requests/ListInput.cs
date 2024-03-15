@@ -20,43 +20,25 @@ public interface IListInput
     int Take { get; }
 }
 
-public class ListInput : IListInput
+public record ListInput : IListInput
 {
-    public virtual string? SearchText { get; set; }
+    public virtual string? SearchText { get; init; }
 
-    public virtual int Page { get; set; }
+    public virtual int Page { get; init; } = 1;
 
-    public virtual int ItemsPerPage { get; set; }
+    public virtual int ItemsPerPage { get; init; } = 10;
 
-    public virtual string? SortBy { get; set; }
+    public virtual string? SortBy { get; init; }
 
-    public virtual bool SortDesc { get; set; }
+    public virtual bool SortDesc { get; init; }
 
-    public virtual bool PaginationEnabled { get; set; }
-
-    [NotMapped]
-    [JsonIgnore]
-    public virtual int Skip
-    {
-        get { return this.ItemsPerPage * (this.Page - 1); }
-    }
+    public virtual bool PaginationEnabled { get; init; } = true;
 
     [NotMapped]
     [JsonIgnore]
-    public virtual int Take
-    {
-        get { return this.ItemsPerPage; }
-    }
+    public virtual int Skip => this.ItemsPerPage * (this.Page - 1);
 
-    public ListInput()
-    {
-        this.SetDefault();
-    }
-
-    protected void SetDefault()
-    {
-        this.Page = 1;
-        this.ItemsPerPage = 10;
-        this.PaginationEnabled = true;
-    }
+    [NotMapped]
+    [JsonIgnore]
+    public virtual int Take => this.ItemsPerPage;
 }

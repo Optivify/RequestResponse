@@ -4,17 +4,17 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 {
     #region Get Weather Forecast
 
-    public class GetWeatherForecastInput
+    public record GetWeatherForecastInput
     {
         [Required]
-        public string? City { get; set; }
+        public string? City { get; init; }
     }
 
-    public class GetWeatherForecastResponse : DataResponse<WeatherForecast?>
+    public record GetWeatherForecastResponse : DataResponse<WeatherForecast?>
     {
     }
 
-    public class GetWeatherForecastRequest : Request<GetWeatherForecastInput, GetWeatherForecastResponse>
+    public record GetWeatherForecastRequest : Request<GetWeatherForecastInput, GetWeatherForecastResponse>
     {
     }
 
@@ -22,15 +22,15 @@ namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast
 
     #region List Weather Forecast
 
-    public class ListWeatherForecastInput : ListInput
+    public record ListWeatherForecastInput : ListInput
     {
     }
 
-    public class ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>
+    public record ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>
     {
     }
 
-    public class ListWeatherForecastRequest : Request<ListWeatherForecastInput, ListWeatherForecastResponse>
+    public record ListWeatherForecastRequest : Request<ListWeatherForecastInput, ListWeatherForecastResponse>
     {
     }
 

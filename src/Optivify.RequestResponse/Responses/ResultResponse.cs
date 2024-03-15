@@ -2,7 +2,7 @@
 
 namespace Optivify.RequestResponse;
 
-public class ResultResponse : IResultResponse
+public record ResultResponse : IResultResponse
 {
     public bool IsSuccess { get; set; }
 
