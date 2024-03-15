@@ -16,7 +16,7 @@ public interface IRequestDispatcher : IDisposable
     Task<Result<TResponse>> DispatchAsync<TData, TResponse>(ResultRequest<TData, TResponse> request);
 }
 
-public class RequestDispatcher : IRequestDispatcher, IDisposable
+public class RequestDispatcher : IRequestDispatcher
 {
     private readonly IServiceScope serviceScope;
 
