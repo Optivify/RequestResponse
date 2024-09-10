@@ -1,5 +1,4 @@
-﻿namespace Optivify.RequestResponse;
+﻿// ReSharper disable once CheckNamespace
+namespace Optivify.RequestResponse;
 
-public record ListResponse<TData> : DataResponse<List<TData>>
-{
-}
+public record ListResponse<TData> : Response<List<TData>>;

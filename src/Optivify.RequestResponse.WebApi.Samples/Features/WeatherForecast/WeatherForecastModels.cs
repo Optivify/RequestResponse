@@ -1,37 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Optivify.RequestResponse.WebApi.Samples.Features.WeatherForecast;
-
-#region Get Weather Forecast
 
 public record GetWeatherForecastInput
 {
     [Required]
+    [NotNull]
     public string? City { get; init; }
 }
 
-public record GetWeatherForecastResponse : DataResponse<WeatherForecast?>
-{
-}
+public record GetWeatherForecastResponse : Response<WeatherForecast>;
 
-public record GetWeatherForecastRequest : Request<GetWeatherForecastInput, GetWeatherForecastResponse>
-{
-}
+public record GetWeatherForecastRequest : Request<GetWeatherForecastInput, GetWeatherForecastResponse>;
 
-#endregion
+public record ListWeatherForecastInput : ListInput;
 
-#region List Weather Forecast
+public record ListWeatherForecastResponse : PagedResponse<WeatherForecast>;
 
-public record ListWeatherForecastInput : ListInput
-{
-}
-
-public record ListWeatherForecastResponse : PagedEnumerableResponse<WeatherForecast?>
-{
-}
-
-public record ListWeatherForecastRequest : Request<ListWeatherForecastInput, ListWeatherForecastResponse>
-{
-}
-
-#endregion
+public record ListWeatherForecastRequest : Request<ListWeatherForecastInput, ListWeatherForecastResponse>;

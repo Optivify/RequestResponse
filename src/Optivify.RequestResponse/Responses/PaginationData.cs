@@ -1,4 +1,5 @@
-﻿namespace Optivify.RequestResponse;
+﻿// ReSharper disable once CheckNamespace
+namespace Optivify.RequestResponse;
 
 public record PaginationData
 {

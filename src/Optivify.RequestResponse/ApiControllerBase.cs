@@ -6,34 +6,34 @@ namespace Optivify.RequestResponse;
 
 public abstract class ApiControllerBase : ControllerBase
 {
-    protected IRequestDispatcher? requestDispatcher;
+    protected IRequestDispatcher? _requestDispatcher;
 
     protected IRequestDispatcher RequestDispatcher
     {
         get
         {
-            if (this.requestDispatcher is null)
+            if (_requestDispatcher is null)
             {
-                this.requestDispatcher = HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
-                HttpContext.Response.RegisterForDispose(this.requestDispatcher);
+                _requestDispatcher = HttpContext.RequestServices.GetRequiredService<IRequestDispatcher>();
+                HttpContext.Response.RegisterForDispose(_requestDispatcher);
             }
 
-            return this.requestDispatcher;
+            return _requestDispatcher;
         }
     }
 
     protected Task DispatchAsync(Request request)
     {
-        return this.RequestDispatcher.DispatchAsync(request);
+        return RequestDispatcher.DispatchAsync(request);
     }
 
     protected Task DispatchAsync<TData>(Request<TData> request)
     {
-        return this.RequestDispatcher.DispatchAsync(request);
+        return RequestDispatcher.DispatchAsync(request);
     }
 
-    protected Task<Result<TResponse>> DispatchAsync<TData, TResponse>(Request<TData, TResponse> request)
+    protected Task<Result<TResponse?>> DispatchAsync<TData, TResponse>(Request<TData, TResponse> request)
     {
-        return this.RequestDispatcher.DispatchAsync(request);
+        return RequestDispatcher.DispatchAsync(request);
     }
 }

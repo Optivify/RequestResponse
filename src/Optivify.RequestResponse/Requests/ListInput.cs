@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
+// ReSharper disable once CheckNamespace
 namespace Optivify.RequestResponse;
 
 public interface IListInput
@@ -38,11 +39,11 @@ public record ListInput : IListInput
 
     [NotMapped]
     [JsonIgnore]
-    public virtual int Skip => this.ItemsPerPage * (this.Page - 1);
+    public virtual int Skip => ItemsPerPage * (Page - 1);
 
     [NotMapped]
     [JsonIgnore]
-    public virtual int Take => this.ItemsPerPage;
+    public virtual int Take => ItemsPerPage;
 
     public PaginationData CreatePagination(long totalCount) => new()
     {
