@@ -18,6 +18,8 @@ public interface IListInput
     int Skip { get; }
 
     int Take { get; }
+
+    PaginationData CreatePagination(long totalCount);
 }
 
 public record ListInput : IListInput
@@ -41,4 +43,11 @@ public record ListInput : IListInput
     [NotMapped]
     [JsonIgnore]
     public virtual int Take => this.ItemsPerPage;
+
+    public PaginationData CreatePagination(long totalCount) => new()
+    {
+        Page = Page,
+        ItemsPerPage = ItemsPerPage,
+        TotalCount = totalCount
+    };
 }
